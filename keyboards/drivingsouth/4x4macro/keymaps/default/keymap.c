@@ -15,6 +15,8 @@
  */
 
  #include QMK_KEYBOARD_H
+#include <stdio.h>
+#include "quantum.h"
 
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
@@ -51,3 +53,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
+
+#ifdef OLED_DRIVER_ENABLE
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_0;
+}
+
+bool oled_task_user(void) {
+        oled_set_cursor(0, 0);
+
+        char oled_string[32];
+        sprintf( oled_string, "L%d", (int)layer_state );
+        oled_write_P(PSTR(oled_string), false);
+//        oled_write_P(PSTR("OLED"), false);
+//      uprintf("OLED: layer: %u\n", layer_state);
+/*    if (layer_state == 0) {
+        oled_set_cursor(0, 3);
+        oled_write_P(PSTR("moji"), false);
+        uprintf("OLED: layer: %u\n", layer_state);
+        //oled_write_raw_P(qmk_logo, sizeof(qmk_logo));
+        // oled_scroll_left();
+    } else {
+        // uprintf("OLED: layer: logo2 right %u\n", layer_state);
+        oled_write_raw_P(qmk_logo2, sizeof(qmk_logo2));
+        // oled_scroll_right();
+    }
+*/
+    return true;
+}
+#endif  // OLED_DRIVER_ENABLE

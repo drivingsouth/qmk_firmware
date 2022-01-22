@@ -30,6 +30,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 4
 
+//#define OLED_ENABLE
+#define OLED_DRIVER_ENABLE
+#define OLED_DRIVER
+//OLED_DISPLAY_128X64 = yes
+
+#define OLED_DISPLAY_128X64
 //#define EEPROM_I2C_24LC64
 
 /*
