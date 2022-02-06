@@ -16,10 +16,6 @@
 
 #pragma once
 
-#include_next <mcuconf.h>
+#define HAL_USE_I2C TRUE
 
-//#undef STM32_I2C_USE_I2C1
-//#define STM32_I2C_USE_I2C1 TRUE
-
-#undef STM32_SERIAL_USE_USART1
-#define STM32_SERIAL_USE_USART1 TRUE	// for split
+#include_next <halconf.h>

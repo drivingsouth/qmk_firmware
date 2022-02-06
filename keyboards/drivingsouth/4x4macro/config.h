@@ -27,15 +27,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT         4x4macro
 
 /* key matrix size */
-#define MATRIX_ROWS 4
-#define MATRIX_COLS 4
+#define MATRIX_ROWS 8	// X
+#define MATRIX_COLS 4	// Y
 
-//#define OLED_ENABLE
-#define OLED_DRIVER_ENABLE
-#define OLED_DRIVER
-//OLED_DISPLAY_128X64 = yes
-
+  //#define OLED_ENABLE
+#ifdef OLED_ENABLE
+#define OLED_DRIVER_ENABLE  // need this to display on OLED
+//#define OLED_DRIVER
+  //OLED_DISPLAY_128X64 = yes
 #define OLED_DISPLAY_128X64
+#endif
+
 //#define EEPROM_I2C_24LC64
 
 /*
@@ -149,3 +151,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Bootmagic Lite key configuration */
 //#define BOOTMAGIC_LITE_ROW 0
 //#define BOOTMAGIC_LITE_COLUMN 0
+
+#define SPLIT_USB_DETECT
+//#define MASTER_LEFT
+//#define MASTER_RIGHT
+
+#define SEL_F103
+//#define SEL_F411
+
+#undef SERIAL_USART_RX_PIN
+#ifdef SEL_F103
+  #define SOFT_SERIAL_PIN B10  // USART TX ピン for F103
+  #define SERIAL_USART_RX_PIN B11	 // for F103
+  #define SERIAL_USART_DRIVER SD3  // for F103
+#endif
+
+#ifdef SEL_F411
+  #define SOFT_SERIAL_PIN B6  // USART TX ピン for F411
+  #define SERIAL_USART_RX_PIN B7     // for F411
+  #define SERIAL_USART_DRIVER SD1		// for F411
+#endif
+#define SELECT_SOFT_SERIAL_SPEED 1 // または 0, 2, 3, 4, 5
+                                   //  0: 約 460800 ボー
+                                   //  1: 約 230400 ボー (デフォルト)
+                                   //  2: 約 115200 ボー
+                                   //  3: 約 57600 ボー
+                                   //  4: 約 38400 ボー
+                                   //  5: 約 19200 ボー
+//#define SERIAL_USART_DRIVER SD1 // TX ピンの USART ドライバ。デフォルトは SD1
+#define SERIAL_USART_TX_PAL_MODE 7 // 「代替機能」 ピン。MCU の適切な値については、それぞれのデータシートを見てください。デフォルトは 7
+#define SERIAL_USART_RX_PAL_MODE 7 // 「代替機能」 ピン。MCU の適切な値については、それぞれのデータシートを見てください。デフォルトは 7
+//#define USART1_REMAP
+
+/* SERIAL SPLIT DRIVER */
+//#undef SERIAL_USART_TX_PIN
+//#define SERIAL_USART_TX_PIN B6
+#define SERIAL_USART_FULL_DUPLEX
+#define SERIAL_USART_TIMEOUT 5
+#define SERIAL_USART_CR2 0x0  // 1 stop bit is enough
+
+

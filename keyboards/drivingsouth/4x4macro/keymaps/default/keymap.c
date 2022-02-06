@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- #include QMK_KEYBOARD_H
+#include QMK_KEYBOARD_H
 #include <stdio.h>
 #include "quantum.h"
 
@@ -29,28 +29,28 @@ enum layer_names {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_BASE] = LAYOUT(
-    DF(0),   KC_1,    KC_2,    KC_3,
-    DF(1),   KC_Q,    KC_W,    KC_E,
-    DF(2),   KC_A,    KC_S,    KC_D,
-    MO(1),   KC_Z,    KC_X,    KC_C
+    DF(0),   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,	// ROWS0
+    DF(1),   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,
+    DF(2),   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,
+    MO(1),   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M
     ),
     [_FN1] = LAYOUT(
-    KC_TRNS, KC_F1,   KC_F2,   KC_F3,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_UP,   KC_TRNS,
-    KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT
+    KC_TRNS, KC_4,    KC_5,    KC_6,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_R,    KC_T,    KC_Y,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_UP,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     ),
     [_FN2] = LAYOUT(
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_DEL,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    KC_TRNS, KC_7,    KC_8,    KC_0,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_U,    KC_I,    KC_O,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     ),
     [_FN3] = LAYOUT(
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
 
@@ -61,10 +61,12 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 bool oled_task_user(void) {
-        oled_set_cursor(0, 0);
-
         char oled_string[32];
-        sprintf( oled_string, "L%d", (int)layer_state );
+        oled_set_cursor(0, 0);
+        sprintf( oled_string, " L%d", (int)layer_state );
+        oled_write_P(PSTR(oled_string), false);
+        oled_set_cursor(0, 1);
+        sprintf( oled_string, "DL%d", (int)default_layer_state );
         oled_write_P(PSTR(oled_string), false);
 //        oled_write_P(PSTR("OLED"), false);
 //      uprintf("OLED: layer: %u\n", layer_state);
