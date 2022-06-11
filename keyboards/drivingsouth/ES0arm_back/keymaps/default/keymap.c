@@ -1,0 +1,184 @@
+/* Copyright 2021 Kyle McCreery
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include QMK_KEYBOARD_H
+#include <stdio.h>
+#include "quantum.h"
+#include "../../config.h"
+
+// Defines names for use in layer keycodes and the keymap
+enum layer_names {
+    _BASE,
+    _FN1,
+	_FN2,
+	_FN3
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    /* Base */
+    [_BASE] = LAYOUT(
+    KC_LEFT_CTRL,    KC_2,     KC_3,     KC_4,    KC_5,    KC_6,    KC_7,    KC_8,	// ROWS0
+    MO(1),   C(KC_C),  KC_V,  KC_R,    KC_T,    KC_Y,    KC_U,    KC_I
+    ),
+    [_FN1] = LAYOUT(
+    KC_TRNS, KC_4,    KC_5,    KC_6,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_R,    KC_T,    KC_Y,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    ),
+    [_FN2] = LAYOUT(
+    KC_TRNS, KC_7,    KC_8,    KC_0,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_U,    KC_I,    KC_O,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    ),
+    [_FN3] = LAYOUT(
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+    )
+};
+
+#ifdef OLED_DRIVER_ENABLE
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_0;
+}
+
+bool oled_task_user(void) {
+        char oled_string[32];
+        oled_set_cursor(0, 0);
+        sprintf( oled_string, " L%d", (int)layer_state );
+        oled_write_P(PSTR(oled_string), false);
+        oled_set_cursor(0, 1);
+        sprintf( oled_string, "DL%d", (int)default_layer_state );
+        oled_write_P(PSTR(oled_string), false);
+//        oled_write_P(PSTR("OLED"), false);
+//      uprintf("OLED: layer: %u\n", layer_state);
+/*    if (layer_state == 0) {
+        oled_set_cursor(0, 3);
+        oled_write_P(PSTR("moji"), false);
+        uprintf("OLED: layer: %u\n", layer_state);
+        //oled_write_raw_P(qmk_logo, sizeof(qmk_logo));
+        // oled_scroll_left();
+    } else {
+        // uprintf("OLED: layer: logo2 right %u\n", layer_state);
+        oled_write_raw_P(qmk_logo2, sizeof(qmk_logo2));
+        // oled_scroll_right();
+    }
+*/
+    return true;
+}
+#endif  // OLED_DRIVER_ENABLE
+
+#ifdef ENABLE_ENOCDER
+static void encoder_update_user_index0_BASE( bool clockwise )
+{
+	if ( get_mods() & MOD_BIT(KC_LCTRL) ) {
+		if( clockwise ){
+			tap_code( KC_LEFT );
+		} else {
+			tap_code( KC_RIGHT );
+		}
+	} else {
+		if( clockwise ){
+			tap_code( KC_UP );
+		} else {
+			tap_code( KC_DOWN );
+		}
+	}
+}
+
+static void encoder_update_user_index0_FN1( bool clockwise )
+{
+	if ( get_mods() & MOD_BIT(KC_LCTRL) ) {
+		if( clockwise ){
+			tap_code( KC_MS_WH_LEFT );
+		} else {
+			tap_code( KC_MS_WH_RIGHT );
+		}
+	} else {
+		if( clockwise ){
+			tap_code( KC_MS_WH_UP );
+		} else {
+			tap_code( KC_MS_WH_DOWN );
+		}
+	}
+}
+
+static void encoder_update_user_index0( bool clockwise )
+{
+	if( IS_LAYER_ON( _FN1 ) ){
+		encoder_update_user_index0_FN1( clockwise );
+	} else {
+		encoder_update_user_index0_BASE( clockwise );
+	}
+}
+
+static void encoder_update_user_index1_BASE( bool clockwise )
+{
+	if ( get_mods() & MOD_BIT(KC_LCTRL) ) {
+		if( clockwise ){
+			tap_code( KC_KB_VOLUME_UP );
+		} else {
+			tap_code( KC_KB_VOLUME_DOWN );
+		}
+	} else {
+		if( clockwise ){
+			tap_code( KC_PAGE_UP );
+		} else {
+			tap_code( KC_PAGE_DOWN );
+		}
+	}
+}
+
+static void encoder_update_user_index1_FN1( bool clockwise )
+{
+	if ( get_mods() & MOD_BIT(KC_LCTRL) ) {
+		if( clockwise ){
+			tap_code( KC_MS_WH_LEFT );
+		} else {
+			tap_code( KC_MS_WH_RIGHT );
+		}
+	} else {
+		if( clockwise ){
+			tap_code( KC_MS_WH_UP );
+		} else {
+			tap_code( KC_MS_WH_DOWN );
+		}
+	}
+}
+
+static void encoder_update_user_index1( bool clockwise )
+{
+	if( IS_LAYER_ON( _FN1 ) ){
+		encoder_update_user_index1_FN1( clockwise );
+	} else {
+		encoder_update_user_index1_BASE( clockwise );
+	}
+}
+
+bool encoder_update_user(uint8_t index, bool clockwise)
+{
+	switch( index ){
+	case 0:
+		encoder_update_user_index0( clockwise );
+		break;
+	case 1:
+		encoder_update_user_index1( clockwise );
+		break;
+	default:
+		break;
+	}
+
+	return true;
+}
+#endif

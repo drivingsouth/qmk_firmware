@@ -1,0 +1,27 @@
+{
+    "keyboard_name": "drivingsouth ES0",
+    "url": "drivingsouth",
+    "maintainer": "drivingsouth",
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {"label": "L00", "x": 0,  "y": 0}, 
+                {"label": "L01", "x": 1,  "y": 0}, 
+                {"label": "L02", "x": 2,  "y": 0}, 
+                {"label": "L03", "x": 3,  "y": 0}, 
+				{"label": "R00", "x": 4,  "y": 0}, 
+                {"label": "R01", "x": 5,  "y": 0}, 
+                {"label": "R02", "x": 6,  "y": 0}, 
+                {"label": "R03", "x": 7,  "y": 0}, 
+				{"label": "L10", "x": 0,  "y": 1}, 
+                {"label": "L11", "x": 1,  "y": 1}, 
+                {"label": "L12", "x": 2,  "y": 1}, 
+                {"label": "L13", "x": 3,  "y": 1}, 
+				{"label": "R10", "x": 4,  "y": 1}, 
+                {"label": "R11", "x": 5,  "y": 1}, 
+                {"label": "R12", "x": 6,  "y": 1}, 
+                {"label": "R13", "x": 7,  "y": 1}
+            ]
+        }
+    }
+}
