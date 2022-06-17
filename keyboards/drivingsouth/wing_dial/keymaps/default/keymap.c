@@ -35,18 +35,18 @@ enum layer_names {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_BASE] = LAYOUT(
-    KC_ESCAPE,     KC_1,        KC_2,         KC_3,        KC_4,        KC_5,  KC_6,  KC_COPY, KC_PASTE, KC_7,  KC_8,  KC_9,         KC_0,         KC_MINUS,      KC_EQUAL,        KC_BACKSPACE,	// ROWS0
-    MO(1),         KC_GRAVE,    KC_Q,         KC_W,        KC_E,        KC_R,  KC_T,  KC_NO,   KC_NO,    KC_Y,  KC_U,  KC_I,         KC_O,         KC_P,          KC_LEFT_BRACKET, KC_RIGHT_BRACKET,	// ROWS1
-    MO(2),         KC_TAB,      KC_A,         KC_S,        KC_D,        KC_F,  KC_G,  KC_NO,   KC_NO,    KC_H,  KC_J,  KC_K,         KC_L,         KC_SEMICOLON,  KC_QUOTE,        KC_ENTER,	// ROWS2
-	MO(3),         KC_LGUI,     KC_Z,         KC_X,        KC_C,        KC_V,  KC_B,  KC_NO,   KC_NO,    KC_N,  KC_M,  KC_COMMA,     KC_DOT,       KC_SLASH,      KC_BACKSLASH,    KC_DELETE, //ROWS3
-    KC_LEFT_SHIFT, KC_SPACE,    KC_LEFT_CTRL, KC_LEFT_ALT, C(KC_SPACE), KC_NO, KC_NO, KC_NO,   KC_NO,    KC_NO, KC_NO, KC_BACKSPACE, KC_RIGHT_ALT, KC_RIGHT_CTRL, KC_ENTER,        KC_RIGHT_SHIFT	// ROWS4
+    KC_ESCAPE,     KC_1,        KC_2,         KC_3,        KC_4,        KC_5,   KC_6,    KC_COPY,  KC_PASTE, KC_7,    KC_8,    KC_9,         KC_0,         KC_MINUS,      KC_EQUAL,        KC_BACKSPACE,	// ROWS0
+    MO(1),         KC_GRAVE,    KC_Q,         KC_W,        KC_E,        KC_R,   KC_T,    KC_NO,    KC_NO,    KC_Y,    KC_U,    KC_I,         KC_O,         KC_P,          KC_LEFT_BRACKET, KC_RIGHT_BRACKET,	// ROWS1
+    MO(2),         KC_TAB,      KC_A,         KC_S,        KC_D,        KC_F,   KC_G,    KC_NO,    KC_NO,    KC_H,    KC_J,    KC_K,         KC_L,         KC_SEMICOLON,  KC_QUOTE,        KC_ENTER,	// ROWS2
+	MO(1),         KC_LGUI,     KC_Z,         KC_X,        KC_C,        KC_V,   KC_B,    KC_NO,    KC_NO,    KC_N,    KC_M,    KC_COMMA,     KC_DOT,       KC_SLASH,      KC_BACKSLASH,    KC_DELETE, //ROWS3
+    KC_LEFT_SHIFT, KC_SPACE,    KC_LEFT_CTRL, KC_LEFT_ALT, C(KC_SPACE), KC_NO,  KC_NO,   KC_NO,    KC_NO,    KC_NO,   KC_NO,   KC_BACKSPACE, KC_RIGHT_ALT, KC_RIGHT_CTRL, KC_ENTER,        KC_RIGHT_SHIFT	// ROWS4
     ),
     [_FN1] = LAYOUT(
-    KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_TRNS, KC_TRNS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_TRNS,	// ROWS0
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	// ROWS1
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	// ROWS2
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,	// ROWS3
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS	// ROWS4
+    KC_TRNS,       KC_F1,       KC_F2,        KC_F3,       KC_F4,       KC_F5,   KC_F6,   KC_TRNS, KC_TRNS,  KC_F7,   KC_F8,   KC_F9,        KC_F10,       KC_F11,      KC_F12,    KC_TRNS,	// ROWS0
+    KC_TRNS,       KC_TRNS,     KC_TRNS,      KC_TRNS,     KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,      KC_TRNS,     KC_TRNS,   KC_TRNS,	// ROWS1
+    KC_TRNS,       KC_TRNS,     KC_TRNS,      KC_TRNS,     KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_BACKSPACE, KC_LEFT, KC_UP,   KC_RIGHT,     KC_TRNS,     KC_TRNS,   KC_TRNS,	// ROWS2
+    KC_TRNS,       KC_TRNS,     KC_TRNS,      KC_TRNS,     KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_DOWN,      KC_TRNS,      KC_TRNS,     KC_TRNS,   KC_TRNS,	// ROWS3
+    KC_TRNS,       KC_TRNS,     KC_TRNS,      KC_TRNS,     KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,      KC_TRNS,     KC_TRNS,   KC_TRNS	// ROWS4
     ),
     [_FN2] = LAYOUT(
     KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_TRNS, KC_TRNS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_TRNS,	// ROWS0
@@ -106,35 +106,20 @@ static void encoder_update_user_index0_BASE( bool clockwise )
 {
 	// LEFT EC12 Rotary Encoder
 
-	if ( get_mods() & (MOD_BIT(KC_LCTRL) | MOD_BIT(KC_LCTRL)) ) {
-		if( clockwise ){
-			tap_code( KC_VOLU );
-		} else {
-			tap_code( KC_VOLD );
-		}
+//	if ( get_mods() & (MOD_BIT(KC_LCTRL) | MOD_BIT(KC_RCTRL)) ) {
+	if( clockwise ){
+		tap_code( KC_PGUP );
 	} else {
-		if( clockwise ){
-			tap_code( KC_PGUP );
-		} else {
-			tap_code( KC_PGDN );
-		}
+		tap_code( KC_PGDN );
 	}
 }
 
 static void encoder_update_user_index0_FN1( bool clockwise )
 {
-	if ( get_mods() & (MOD_BIT(KC_LCTRL) | MOD_BIT(KC_LCTRL)) ) {
-		if( clockwise ){
-			tap_code( KC_MS_WH_LEFT );
-		} else {
-			tap_code( KC_MS_WH_RIGHT );
-		}
+	if( clockwise ){
+		tap_code( KC_PGUP /*KC_VOLU*/ );
 	} else {
-		if( clockwise ){
-			tap_code( KC_MS_WH_UP );
-		} else {
-			tap_code( KC_MS_WH_DOWN );
-		}
+		tap_code( KC_PGDN /*KC_VOLD*/ );
 	}
 }
 
